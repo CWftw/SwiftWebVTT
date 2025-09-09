@@ -26,8 +26,8 @@ public class WebVTTParser {
     public func parse() throws -> WebVTT {
         guard
             let signature = scanner.scanUpToCharacters(from: WebVTTParser.spaceDelimiterSet),
-            signature == "WEBVTT"
-            else { throw WebVTTError.invalidSignature }
+			signature.contains("WEBVTT")
+		else { throw WebVTTError.invalidSignature }
         
         scanner.scanUpToCharacters(from: WebVTTParser.newlineSet, thenSkip: 1)
         
